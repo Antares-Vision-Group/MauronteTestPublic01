@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "WinFormsNet6",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build WinFormsNet6",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/GettingStartedGuides/WinFormsNet6/bin/Debug/net6.0-windows/WinFormsNet6.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/GettingStartedGuides/WinFormsNet6",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "WpfNet6",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build WpfNet6",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/GettingStartedGuides/WpfNet6/bin/Debug/net6.0-windows/WpfNet6.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/GettingStartedGuides/WpfNet6",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
