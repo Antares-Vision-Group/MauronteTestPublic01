@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "make",
+			"problemMatcher": [],
+			"label": "npm: make",
+			"detail": "electron-forge make"
+		},
+		{
+			"type": "npm",
+			"script": "package",
+			"problemMatcher": [],
+			"label": "npm: package",
+			"detail": "electron-forge package"
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [],
+			"label": "npm: start",
+			"detail": "electron-forge start"
+		}
+	]
+}
