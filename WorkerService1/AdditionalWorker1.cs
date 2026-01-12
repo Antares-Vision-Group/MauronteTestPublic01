@@ -1,4 +1,6 @@
 using System;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace WorkerService1;
 
@@ -7,13 +9,13 @@ public class AdditionalWorker1 : BackgroundService
 
     private readonly ILogger<AdditionalWorker1> _logger;
 
-    private static Action<ILogger, DateTimeOffset, Exception> _workerRunning;
+    private static readonly Action<ILogger, DateTimeOffset, Exception> _workerRunning;
 
     static AdditionalWorker1()
     {
         _workerRunning = LoggerMessage.Define<DateTimeOffset>(
             LogLevel.Information,
-            new EventId(1, "Worker running"),
+            new EventId(1, "AdditionalWorker1 running"),
             "Worker running at: {time}");
     }
 
@@ -22,6 +24,16 @@ public class AdditionalWorker1 : BackgroundService
         _logger = logger;
     }
 
+    /// <summary>
+    /// Executes the background worker logic, periodically logging activity
+    /// until a cancellation is requested.
+    /// </summary>
+    /// <param name="stoppingToken">
+    /// A token that signals when the background operation should stop.
+    /// </param>
+    /// <returns>
+    /// A <see cref="Task"/> that represents the lifetime of the background operation.
+    /// </returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
