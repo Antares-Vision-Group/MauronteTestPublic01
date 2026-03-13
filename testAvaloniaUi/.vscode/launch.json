@@ -1,0 +1,75 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "avaloniaSimpleFromCopilotNet8",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build avaloniaSimpleFromCopilotNet8",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/avaloniaSimpleFromCopilotNet8/bin/Debug/net8.0/avaloniaSimpleFromCopilotNet8.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/avaloniaSimpleFromCopilotNet8",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "avaloniaMvvmTemplateNet8",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build avaloniaMvvmTemplateNet8",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/avaloniaMvvmTemplateNet8/bin/Debug/net8.0/avaloniaMvvmTemplateNet8.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/avaloniaMvvmTemplateNet8",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "avaloniaMvvmFromCopilotNet6",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build avaloniaMvvmFromCopilotNet6",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/avaloniaMvvmFromCopilotNet6/bin/Debug/net6.0/avaloniaMvvmFromCopilotNet6.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/avaloniaMvvmFromCopilotNet6",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "avaloniaSimpleTemplateNet8",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build avaloniaSimpleTemplateNet8",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/avaloniaSimpleTemplateNet8/bin/Debug/net8.0/avaloniaSimpleTemplateNet8.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/avaloniaSimpleTemplateNet8",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+       {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}

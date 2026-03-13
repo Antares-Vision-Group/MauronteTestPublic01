@@ -1,0 +1,16 @@
+{
+  "name": "Avalonia Dev Container",
+  "dockerFile": "Dockerfile",
+  "context": "..",
+  "runArgs": ["--init"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csharp",
+        "avalonia.avalonia-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "dotnet restore",
+  "remoteUser": "vscode"
+}

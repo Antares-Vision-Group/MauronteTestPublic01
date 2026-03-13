@@ -1,0 +1,186 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/OnlyNet8ForDevCont.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/OnlyNet8ForDevCont.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/OnlyNet8ForDevCont.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build avaloniaMvvmFromCopilotNet6",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/avaloniaMvvmFromCopilotNet6/avaloniaMvvmFromCopilotNet6.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish avaloniaMvvmFromCopilotNet6",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/avaloniaMvvmFromCopilotNet6/avaloniaMvvmFromCopilotNet6.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch avaloniaMvvmFromCopilotNet6",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/avaloniaMvvmFromCopilotNet6/avaloniaMvvmFromCopilotNet6.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build avaloniaSimpleFromCopilotNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/avaloniaSimpleFromCopilotNet8/avaloniaSimpleFromCopilotNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish avaloniaSimpleFromCopilotNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/avaloniaSimpleFromCopilotNet8/avaloniaSimpleFromCopilotNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch avaloniaSimpleFromCopilotNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/avaloniaSimpleFromCopilotNet8/avaloniaSimpleFromCopilotNet8.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build avaloniaMvvmTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/avaloniaMvvmTemplateNet8/avaloniaMvvmTemplateNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish avaloniaMvvmTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/avaloniaMvvmTemplateNet8/avaloniaMvvmTemplateNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch avaloniaMvvmTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/avaloniaMvvmTemplateNet8/avaloniaMvvmTemplateNet8.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build avaloniaSimpleTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/avaloniaSimpleTemplateNet8/avaloniaSimpleTemplateNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish avaloniaSimpleTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/avaloniaSimpleTemplateNet8/avaloniaSimpleTemplateNet8.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch avaloniaSimpleTemplateNet8",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/avaloniaSimpleTemplateNet8/avaloniaSimpleTemplateNet8.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+
+    ]
+}

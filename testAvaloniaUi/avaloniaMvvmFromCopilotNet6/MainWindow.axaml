@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:avaloniaMvvmFromCopilotNet6"
+        mc:Ignorable="d"
+        x:Class="avaloniaMvvmFromCopilotNet6.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Width="400" Height="250"
+        Title="Avalonia 11 + .NET 6 Sample">
+    <StackPanel Margin="20" Spacing="10">
+        <TextBlock Text="{Binding Greeting}" FontSize="20"/>
+        <Button Content="Click Me" Command="{Binding ClickCommand}" Width="100"/>
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button Content="Light Theme" Command="{Binding LightThemeCommand}"/>
+            <Button Content="Dark Theme" Command="{Binding DarkThemeCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
