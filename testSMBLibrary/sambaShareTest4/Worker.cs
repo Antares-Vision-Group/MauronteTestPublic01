@@ -3,7 +3,7 @@ using SMBLibrary;
 using SMBLibrary.Client;
 using sambaShareCommon;
 
-namespace sambaShareTest2;
+namespace sambaShareTest4;
 
 public class Worker : BackgroundService
 {
@@ -28,9 +28,11 @@ public class Worker : BackgroundService
     {
         await Task.Yield(); // allow host startup to complete
 
-        var client = new SMB2Client();
+        var client = new SMB2Client(
+            TimeSpan.FromSeconds(20),
+            msg => _logger.LogError("{Msg}", msg));
 
-        bool connected = client.Connect(_shareOptions.Host, SMBTransportType.DirectTCPTransport);
+        bool connected = await client.Connect(_shareOptions.Host, SMBTransportType.DirectTCPTransport);
         if (!connected)
         {
             _logger.LogError("Failed to connect to host '{Host}'", _shareOptions.Host);
@@ -38,7 +40,7 @@ public class Worker : BackgroundService
             return;
         }
 
-        NTStatus status = client.Login(_shareOptions.Domain, _shareOptions.Username, _shareOptions.Password);
+        NTStatus status = await client.Login(_shareOptions.Domain, _shareOptions.Username, _shareOptions.Password);
         if (status != NTStatus.STATUS_SUCCESS)
         {
             _logger.LogError("Login failed with status {Status}", status);
@@ -47,21 +49,20 @@ public class Worker : BackgroundService
             return;
         }
 
-        ISMBFileStore fileStore = client.TreeConnect(_shareOptions.ShareName, out status);
-        if (status != NTStatus.STATUS_SUCCESS)
+        var treeResult = await client.TreeConnect(_shareOptions.ShareName);
+        if (treeResult.Status != NTStatus.STATUS_SUCCESS)
         {
             _logger.LogError("TreeConnect to share '{Share}' failed with status {Status}",
-                _shareOptions.ShareName, status);
-            client.Logoff();
+                _shareOptions.ShareName, treeResult.Status);
+            await client.Logoff();
             client.Disconnect();
             _lifetime.StopApplication();
             return;
         }
 
-        object? directoryHandle;
-        FileStatus fileStatus;
-        status = fileStore.CreateFile(
-            out directoryHandle, out fileStatus,
+        var fileStore = (SMB2FileStore)treeResult.Content;
+
+        var createResult = await fileStore.CreateFile(
             _browseOptions.SubFolder,
             AccessMask.GENERIC_READ,
             SMBLibrary.FileAttributes.Directory,
@@ -70,42 +71,43 @@ public class Worker : BackgroundService
             CreateOptions.FILE_DIRECTORY_FILE,
             null);
 
-        if (status != NTStatus.STATUS_SUCCESS)
+        if (createResult.Status != NTStatus.STATUS_SUCCESS)
         {
-            _logger.LogError("Cannot open folder '{Folder}': {Status}", _browseOptions.SubFolder, status);
+            _logger.LogError("Cannot open folder '{Folder}': {Status}", _browseOptions.SubFolder, createResult.Status);
         }
         else
         {
+            var (directoryHandle, _) = createResult.Content;
+
             _logger.LogInformation("Listing files in '\\\\{Host}\\{Share}\\{Folder}':",
                 _shareOptions.Host, _shareOptions.ShareName, _browseOptions.SubFolder);
 
-            NTStatus queryStatus;
-            do
-            {
-                queryStatus = fileStore.QueryDirectory(
-                    out var page, directoryHandle, "*",
-                    FileInformationClass.FileDirectoryInformation);
+            var queryResult = await fileStore.QueryDirectory(
+                directoryHandle, "*", FileInformationClass.FileDirectoryInformation);
 
-                if (queryStatus == NTStatus.STATUS_SUCCESS || queryStatus == NTStatus.STATUS_NO_MORE_FILES)
+            if (queryResult.Status == NTStatus.STATUS_SUCCESS || queryResult.Status == NTStatus.STATUS_NO_MORE_FILES)
+            {
+                foreach (var entry in queryResult.Content)
                 {
-                    foreach (var entry in page)
+                    if (entry is FileDirectoryInformation info &&
+                        info.FileName != "." && info.FileName != "..")
                     {
-                        if (entry is FileDirectoryInformation info &&
-                            info.FileName != "." && info.FileName != "..")
-                        {
-                            bool isDir = info.FileAttributes.HasFlag(SMBLibrary.FileAttributes.Directory);
-                            _logger.LogInformation("  {Type}  {Name}",
-                                isDir ? "[DIR] " : "[FILE]", info.FileName);
-                        }
+                        bool isDir = info.FileAttributes.HasFlag(SMBLibrary.FileAttributes.Directory);
+                        _logger.LogInformation("  {Type}  {Name}",
+                            isDir ? "[DIR] " : "[FILE]", info.FileName);
                     }
                 }
-            } while (queryStatus == NTStatus.STATUS_SUCCESS);
+            }
+            else
+            {
+                _logger.LogError("QueryDirectory failed with status {Status}", queryResult.Status);
+            }
 
-            fileStore.CloseFile(directoryHandle);
+            await fileStore.CloseFile(directoryHandle);
         }
 
-        fileStore.Disconnect();
-        client.Logoff();
+        await fileStore.Disconnect();
+        await client.Logoff();
         client.Disconnect();
 
         _lifetime.StopApplication();

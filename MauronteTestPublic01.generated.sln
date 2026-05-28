@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkerService1", "WorkerService1\WorkerService1.csproj", "{3F0940FD-4A36-4C4F-9333-396FBDC28440}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService1.Tests", "WorkerService1.Tests\WorkerService1.Tests.csproj", "{6A36FBB0-DB59-48D7-8DF3-D2C7A4F255F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testSMBLibrary", "testSMBLibrary", "{BCF88E62-0D50-849C-2027-CCCA0261B810}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sambaShareTest2", "testSMBLibrary\sambaShareTest2\sambaShareTest2.csproj", "{75CA792F-08A2-4C0C-91EF-3F8234156874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sambaShareCommon", "testSMBLibrary\sambaShareCommon\sambaShareCommon.csproj", "{B44A51BA-6BA9-4D44-9655-57FFE4133076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sambaShareTest4", "testSMBLibrary\sambaShareTest4\sambaShareTest4.csproj", "{24E17399-6A0B-4D5F-93EE-4D866F9C2F73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sambaShareTest3", "testSMBLibrary\sambaShareTest3\sambaShareTest3.csproj", "{36D37B11-9F0C-4136-B63A-57423E781559}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +31,31 @@ Global
 		{6A36FBB0-DB59-48D7-8DF3-D2C7A4F255F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A36FBB0-DB59-48D7-8DF3-D2C7A4F255F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A36FBB0-DB59-48D7-8DF3-D2C7A4F255F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75CA792F-08A2-4C0C-91EF-3F8234156874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75CA792F-08A2-4C0C-91EF-3F8234156874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75CA792F-08A2-4C0C-91EF-3F8234156874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75CA792F-08A2-4C0C-91EF-3F8234156874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B44A51BA-6BA9-4D44-9655-57FFE4133076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B44A51BA-6BA9-4D44-9655-57FFE4133076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B44A51BA-6BA9-4D44-9655-57FFE4133076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B44A51BA-6BA9-4D44-9655-57FFE4133076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E17399-6A0B-4D5F-93EE-4D866F9C2F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E17399-6A0B-4D5F-93EE-4D866F9C2F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E17399-6A0B-4D5F-93EE-4D866F9C2F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E17399-6A0B-4D5F-93EE-4D866F9C2F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36D37B11-9F0C-4136-B63A-57423E781559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36D37B11-9F0C-4136-B63A-57423E781559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36D37B11-9F0C-4136-B63A-57423E781559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36D37B11-9F0C-4136-B63A-57423E781559}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{75CA792F-08A2-4C0C-91EF-3F8234156874} = {BCF88E62-0D50-849C-2027-CCCA0261B810}
+		{B44A51BA-6BA9-4D44-9655-57FFE4133076} = {BCF88E62-0D50-849C-2027-CCCA0261B810}
+		{24E17399-6A0B-4D5F-93EE-4D866F9C2F73} = {BCF88E62-0D50-849C-2027-CCCA0261B810}
+		{36D37B11-9F0C-4136-B63A-57423E781559} = {BCF88E62-0D50-849C-2027-CCCA0261B810}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0214B80F-1872-460A-B881-51ECC176E8DB}

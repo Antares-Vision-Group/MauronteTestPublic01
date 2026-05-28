@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
-    <PackageReference Include="SMBLibrary" Version="1.5.7" />
+    <PackageReference Include="SMBLibrary.Async" Version="0.0.1" />
   </ItemGroup>
 
   <ItemGroup>

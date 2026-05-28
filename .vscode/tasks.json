@@ -50,6 +50,32 @@
         ],
         "problemMatcher": "$msCompile",
         "group": "build"
+       },
+       {
+        "label": "build sambaShareTest3",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/testSMBLibrary/sambaShareTest3/sambaShareTest3.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary;ForceNoAlign"
+        ],
+        "problemMatcher": "$msCompile",
+        "group": "build"
+       },
+       {
+        "label": "build sambaShareTest4",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/testSMBLibrary/sambaShareTest4/sambaShareTest4.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary;ForceNoAlign"
+        ],
+        "problemMatcher": "$msCompile",
+        "group": "build"
        }
 
     ]
