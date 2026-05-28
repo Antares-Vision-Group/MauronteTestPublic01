@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "build WorkerService1",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -11,7 +11,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "group": "build"
         },
         {
             "label": "publish",
@@ -36,6 +37,20 @@
                 "${workspaceFolder}/WorkerService1/WorkerService1.csproj"
             ],
             "problemMatcher": "$msCompile"
-        }
+        },
+        {
+        "label": "build sambaShareTest2",
+        "command": "dotnet",
+        "type": "process",
+        "args": [
+            "build",
+            "${workspaceFolder}/testSMBLibrary/sambaShareTest2/sambaShareTest2.csproj",
+            "/property:GenerateFullPaths=true",
+            "/consoleloggerparameters:NoSummary;ForceNoAlign"
+        ],
+        "problemMatcher": "$msCompile",
+        "group": "build"
+       }
+
     ]
 }

@@ -5,14 +5,31 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
-            "name": ".NET Core Launch (console)",
+            "name": "Launch WorkerService1",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build WorkerService1",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/WorkerService1/bin/Debug/net8.0/WorkerService1.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WorkerService1",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+            "name": "Launch sambaShareTest2",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build sambaShareTest2",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/testSMBLibrary/sambaShareTest2/bin/Debug/net8.0/sambaShareTest2.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/testSMBLibrary/sambaShareTest2",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
