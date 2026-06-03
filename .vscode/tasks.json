@@ -76,7 +76,31 @@
         ],
         "problemMatcher": "$msCompile",
         "group": "build"
-       }
+       },
+        {
+            "label": "build CelsiusConvNet80",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/testAvaloniaUi/CelsiusConvNet80/CelsiusConvNet80.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build CelsiusConvWinformsNet80",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/testAvaloniaUi/CelsiusConvWinformsNet80/CelsiusConvWinformsNet80.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        }
 
     ]
 }

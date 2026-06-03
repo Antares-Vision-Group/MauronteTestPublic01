@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:CelsiusConvNet80.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CelsiusConvNet80.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="CelsiusConvNet80"
+        Background="gray"
+        Padding="5" >
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel Margin="0" >
+        <Border Margin="0 0 0 5 " CornerRadius="5" Background="LightBlue" Padding="5" BorderThickness="5" BorderBrush="Blue">
+            <TextBlock Text="{Binding Greeting, Mode=OneTime}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" FontSize="24" Padding="5" Background="Yellow" />
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <Border Margin="0 0 0 5" CornerRadius="5" Background="LightBlue" Padding="5" BorderThickness="5" BorderBrush="Blue" HorizontalAlignment="Left">        
+                <StackPanel>
+                    <Grid ShowGridLines="False" Margin="0 0 5 5" 
+                        ColumnDefinitions="120, 100"
+                        RowDefinitions="Auto, Auto" 
+                        Background="LightBlue" Width="240" HorizontalAlignment="Left">
+                        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 0 5 5" Padding="5" Background="Yellow" >Celsius</TextBlock>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding CelsiusString, Mode=OneWayToSource, UpdateSourceTrigger=LostFocus}" Margin="0 0 5 5" HorizontalAlignment="Left" Width="120" Name="Celsius" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0 0 5 5" Padding="5" Background="Yellow" >Fahrenheit</TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FahrenheitString, Mode=OneWay}" IsReadOnly="True" Margin="0 0 5 5" HorizontalAlignment="Left" Width="120" Name="Fahrenheit" />
+                    </Grid>
+                    <Button Margin="0" Padding="10" Background="Yellow" Command="{Binding CalulateFahrenheitFloatsCommand}" HorizontalAlignment="Center" Name="CalulateFloatsButton">Calculate Floats</Button>
+                </StackPanel>
+            </Border>
+            <Border Margin="0 0 0 5" CornerRadius="5" Background="LightBlue" Padding="5" BorderThickness="5" BorderBrush="Blue" HorizontalAlignment="Left">        
+                <StackPanel>
+                    <Button Margin="0" Padding="10" Background="Yellow" Command="{Binding CreateDriverCommand}" HorizontalAlignment="Center" Name="CreateDriverButton">Create Driver</Button>
+                    <TextBlock Text="{Binding ErrorMessage}"  />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </StackPanel>
+
+</Window>
