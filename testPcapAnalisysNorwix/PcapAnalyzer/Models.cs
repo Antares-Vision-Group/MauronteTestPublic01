@@ -1,3 +1,6 @@
+using System.Buffers.Binary;
+using System.Text;
+
 // ── Frame layout (all offsets 0-based) ─────────────────────────────────────
 // [0]      STX  = 0x02
 // [1..4]   FrameSize  (uint32 BE) — counts bytes from [5] to ETX inclusive
@@ -50,21 +53,21 @@ public class Command55
     public string SerialNumber =>
         Fields.Length > 12 ? Fields[12].Trim() : "(missing)";
 
-    public static Command55? TryParse(DateTime ts, string key, byte[] f)
+    public static Command55? TryParse(DateTime ts, string key, ReadOnlySpan<byte> f)
     {
         try
         {
             if (f.Length < 19 || f[7] != 0x55) return null;
 
             byte   buf  = f[8];
-            uint   page = FrameHelper.Rd32(f, 9);
+            uint   page = BinaryPrimitives.ReadUInt32BigEndian(f[9..]);
             byte   p1   = f[13];
             byte   p2   = f[14];
-            uint   dlen = FrameHelper.Rd32(f, 15);
+            uint   dlen = BinaryPrimitives.ReadUInt32BigEndian(f[15..]);
 
             if (f.Length < 19 + dlen) return null;
 
-            var block  = System.Text.Encoding.ASCII.GetString(f, 19, (int)dlen);
+            var block  = Encoding.ASCII.GetString(f.Slice(19, (int)dlen));
             var fields = block.Split(new[] { "\r\n" }, StringSplitOptions.None);
 
             return new Command55
@@ -101,7 +104,7 @@ public class Notification06
     public uint TotalDrops => DropsPerPen[0] + DropsPerPen[1] +
                               DropsPerPen[2] + DropsPerPen[3];
 
-    public static Notification06? TryParse(DateTime ts, string key, byte[] f)
+    public static Notification06? TryParse(DateTime ts, string key, ReadOnlySpan<byte> f)
     {
         try
         {
@@ -109,7 +112,7 @@ public class Notification06
 
             var drops = new uint[4];
             for (int i = 0; i < 4; i++)
-                drops[i] = FrameHelper.Rd32(f, 14 + i * 4);
+                drops[i] = BinaryPrimitives.ReadUInt32BigEndian(f.Slice(14 + i * 4, 4));
 
             return new Notification06
             {
@@ -117,9 +120,9 @@ public class Notification06
                 StreamKey     = key,
                 BufferNumber  = f[8],
                 QueueCount    = f[9],
-                PageNumber    = FrameHelper.Rd32(f, 10),
+                PageNumber    = BinaryPrimitives.ReadUInt32BigEndian(f[10..]),
                 DropsPerPen   = drops,
-                EncoderPulses = FrameHelper.Rd32(f, 30),
+                EncoderPulses = BinaryPrimitives.ReadUInt32BigEndian(f[30..]),
                 IsRealPrint   = f[34] != 0,
                 PenStatus     = new[] { f[35], f[36], f[37], f[38] },
                 OverallStatus = f[39]
@@ -129,10 +132,4 @@ public class Notification06
     }
 }
 
-// Shared frame parsing helper
-static class FrameHelper
-{
-    public static uint Rd32(byte[] b, int o) =>
-        ((uint)b[o] << 24) | ((uint)b[o + 1] << 16) |
-        ((uint)b[o + 2] << 8) | b[o + 3];
-}
+// (FrameHelper removed — use System.Buffers.Binary.BinaryPrimitives directly)

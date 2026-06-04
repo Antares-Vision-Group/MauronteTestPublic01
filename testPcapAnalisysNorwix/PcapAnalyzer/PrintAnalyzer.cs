@@ -4,7 +4,7 @@ public class PrintAnalyzer
     private readonly List<Notification06> _notifs = new();
     private int _frameCount;
 
-    public void ProcessFrame(DateTime ts, byte[] frame, int srcPort, int dstPort,
+    public void ProcessFrame(DateTime ts, ReadOnlySpan<byte> frame, int srcPort, int dstPort,
                              string streamKey)
     {
         if (frame.Length < 8) return;

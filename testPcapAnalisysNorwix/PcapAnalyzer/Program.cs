@@ -20,7 +20,7 @@ if (!File.Exists(pcapFile))
 Console.WriteLine($"Analyzing: {Path.GetFullPath(pcapFile)}");
 Console.WriteLine(new string('=', 70));
 
-var reassembler = new TcpReassembler();
+using var reassembler = new TcpReassembler();
 var analyzer    = new PrintAnalyzer();
 
 using var reader = new CaptureFileReaderDevice(pcapFile);
@@ -50,8 +50,8 @@ while (reader.GetNextPacket(out PacketCapture capture) == GetPacketStatus.Packet
     var ts        = raw.Timeval.Date;
     var streamKey = $"{ip4.SourceAddress}:{srcPort}->{ip4.DestinationAddress}:{dstPort}";
 
-    foreach (var frame in reassembler.AddData(streamKey, payload))
-        analyzer.ProcessFrame(ts, frame, srcPort, dstPort, streamKey);
+    reassembler.AddData(streamKey, payload, frame =>
+        analyzer.ProcessFrame(ts, frame, srcPort, dstPort, streamKey));
 }
 
 // Optional second arg: comma-separated known-duplicate serials to investigate
