@@ -10,6 +10,7 @@ namespace CelsiusConvNet80.ViewModels;
 public class MainWindowViewModel : ViewModelBase, IDisposable
 {
     private readonly MainWindowModel _model;
+    private MainWindowModel Model => _model;
 
 
     private string? _celsiusString; //alwas updated by the UI and updates the CelsiusFloat
@@ -42,7 +43,7 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         set => this.RaiseAndSetIfChanged(ref _canCreateDriver, value);
     }
 
-    public ICommand CalulateFahrenheitFloatsCommand => ReactiveCommand.Create(CalculateFahrenheitFloats);
+    public ICommand CalculateFahrenheitFloatsCommand => ReactiveCommand.Create(CalculateFahrenheitFloats);
     
     public ICommand CreateDriverCommand {get;} 
 
@@ -85,11 +86,11 @@ public class MainWindowViewModel : ViewModelBase, IDisposable
         }
 
 
-        _model_canCreateDriverObservable = this.WhenAnyValue(x => x._model.CanCreateDriver);
+        _model_canCreateDriverObservable = this.WhenAnyValue(x => x.Model.CanCreateDriver);
 
         _model_canCreateDriverSubscription = _model_canCreateDriverObservable.Subscribe(model_CanCreateDriver_Changed);
 
-        _fahrenheitFloatSubscription = this.WhenAnyValue(x => x._model.FahrenheitFloat).Subscribe(model_FahrenheitFloat_Changed);
+        _fahrenheitFloatSubscription = this.WhenAnyValue(x => x.Model.FahrenheitFloat).Subscribe(model_FahrenheitFloat_Changed);
 
         _celsiusStringSubscription = this.WhenAnyValue(x => x.CelsiusString).Subscribe(CelsiusString_Changed);
 
