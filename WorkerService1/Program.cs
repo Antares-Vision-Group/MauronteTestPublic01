@@ -1,3 +1,4 @@
+using Serilog;
 using WorkerService1;
 
 IHost host = Host.CreateDefaultBuilder(args)
@@ -5,6 +6,9 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<Worker>();
         services.AddHostedService<AdditionalWorker1>();
+    }).ConfigureLogging((context, logging) =>
+    {
+        logging.AddFile(context.Configuration.GetSection("Logging"));
     })
     .Build();
 
