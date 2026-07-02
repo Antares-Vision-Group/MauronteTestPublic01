@@ -1,3 +1,6 @@
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+
 namespace WorkerService1;
 
 public class Worker : BackgroundService
@@ -5,7 +8,11 @@ public class Worker : BackgroundService
     private readonly ILogger<Worker> _logger;
 
     private static Action<ILogger, DateTimeOffset, Exception> _workerRunning;
+    private static readonly Meter _workerMeter = new("WorkerService1.Meter", "1.0");
+    private static readonly Counter<long> _loopsCounter = _workerMeter.CreateCounter<long>("loops");
+    private static readonly Counter<long> _sleepCounter = _workerMeter.CreateCounter<long>("sleeped", "ms");
 
+    private static readonly ActivitySource ActivitySource = new("WorkerService1.Worker");
     static Worker()
     {
         _workerRunning = LoggerMessage.Define<DateTimeOffset>(
@@ -28,15 +35,23 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
+            _loopsCounter.Add(1);
             _workerRunning(_logger, DateTimeOffset.Now, null!);  
-            try
+ 
+            using (var activity = ActivitySource.StartActivity("Delay"))
             {
-                await Task.Delay(1000, stoppingToken);
-            }
-            catch (TaskCanceledException)
-            {
-                _logger.LogInformation("Task was canceled");
-                break;
+
+                try
+                {
+                    await Task.Delay(1000, stoppingToken);
+                    _sleepCounter.Add(1000);
+                    _logger.LogDebug("Delay succesfully completed");
+                }
+                catch (TaskCanceledException)
+                {
+                    _logger.LogInformation("Task was canceled");
+                    break;
+                }
             }
         }
     }
