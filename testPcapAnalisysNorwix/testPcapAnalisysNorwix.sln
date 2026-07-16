@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcapAnalyzer", "PcapAnalyzer\PcapAnalyzer.csproj", "{04615379-A348-D6FF-DD43-5635D1E2DFEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcapInkDbExtractor", "PcapInkDbExtractor\PcapInkDbExtractor.csproj", "{43827755-1ABF-4010-B8D8-BCB3D3B93490}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,6 +16,10 @@ Global
 		{04615379-A348-D6FF-DD43-5635D1E2DFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04615379-A348-D6FF-DD43-5635D1E2DFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04615379-A348-D6FF-DD43-5635D1E2DFEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43827755-1ABF-4010-B8D8-BCB3D3B93490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43827755-1ABF-4010-B8D8-BCB3D3B93490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43827755-1ABF-4010-B8D8-BCB3D3B93490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43827755-1ABF-4010-B8D8-BCB3D3B93490}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
